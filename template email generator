@@ -1,0 +1,42 @@
+import requests
+
+# This is a hypothetical API endpoint provided by the email service.
+API_URL = "https://api.emailservice.com/create_account"
+
+def create_email_account(username, password):
+    # Data to be sent to the API
+    data = {
+        'username': username,
+        'password': password
+    }
+
+    # Send a post request to the API
+    response = requests.post(API_URL, data=data)
+
+    if response.status_code == 200:
+        print("Account created successfully!")
+        return response.json()
+    else:
+        print("Failed to create account")
+        return None
+
+# Hypothetical function to generate a unique username
+def generate_username():
+    # Implement logic to generate a unique username
+    pass
+
+# Hypothetical function to generate a strong password
+def generate_password():
+    # Implement logic to generate a strong password
+    pass
+
+# Example usage
+new_username = generate_username()
+new_password = generate_password()
+
+new_account = create_email_account(new_username, new_password)
+
+if new_account:
+    print("New account details:")
+    print(f"Username: {new_username}")
+    print(f"Password: {new_password}")

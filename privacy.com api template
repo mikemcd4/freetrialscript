@@ -1,0 +1,33 @@
+import requests
+
+# Replace with your actual API key and API endpoint from Privacy.com
+API_KEY = 'your_api_key_here'
+API_ENDPOINT = 'https://api.privacy.com/v1/card'
+
+# Set up the headers with your API key for authentication
+headers = {
+    'Authorization': f'api-key {API_KEY}',
+    'Content-Type': 'application/json'
+}
+
+# Card creation parameters
+card_data = {
+    'spend_limit': 1,  # Set the spend limit to $1
+    'spend_limit_duration': 'FOREVER'  # This sets the limit duration. Adjust as necessary.
+}
+
+# Function to create a new virtual card
+def create_virtual_card():
+    response = requests.post(API_ENDPOINT, json=card_data, headers=headers)
+    
+    if response.status_code == 200:
+        print("Virtual card created successfully.")
+        return response.json()
+    else:
+        print("Failed to create virtual card. Status code:", response.status_code)
+        return None
+
+# Use the function to create a card
+new_card = create_virtual_card()
+if new_card:
+    print(new_card)  # Output the details of the newly created card
